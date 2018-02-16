@@ -21,15 +21,14 @@ public class App
 	 else if(arr.size()==0 || a_list.size()==0)
 		return false;
 	 else if(arr.size() !=  a_list.size())
-		return true;
+		return false;
 	 else {
 		 for(int i=0 ; i<arr.size(); i++) {
 			 arr.set(i,arr.get(i)*a);
 			 
 		 }
 		 for(int i=0 ; i<a_list.size(); i++) {
-			 int v =a_list.get(i)*b;
-			 a_list.set(i, v);
+			  arr.set(i,a_list.get(i)*b);
 			 
 		 }
 		 for(int i=0,j=0 ; i<arr.size(); i++, j++) {
