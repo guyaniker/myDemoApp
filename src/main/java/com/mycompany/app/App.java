@@ -13,16 +13,29 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class App
 {
-    public static boolean search(ArrayList<Integer> array, int e) {
-      System.out.println("inside search");
-      if (array == null) return false;
+    public static boolean search( ArrayList<Integer> arr, ArrayList<Integer> a_list, int a, int b) {
+	 if(a<=0 || b<=0 || arr.size()==0 || a_list.size()==0 || arr.size() !=  a_list.size()) {
+		// System.out.println("NULL ERROR");
+		 return false;
+	 }
+	 for(int i=0 ; i<arr.size(); i++) {
+		 arr.set(i,arr.get(i)*a);
+		 
+	 }
+	 for(int i=0 ; i<a_list.size(); i++) {
+		 int v =a_list.get(i)*b;
+		 a_list.set(i, v);
+		 
+	 }
+	 for(int i=0,j=0 ; i<arr.size(); i++, j++) {
 
-      for (int elt : array) {
-        if (elt == e) return true;
-      }
-      return false;
-    }
+		 int x=arr.get(i)+a_list.get(j); 
+		 arr.set(i,x);
+		 
+	 }
 
+return true;
+ }
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
 
@@ -43,11 +56,18 @@ public class App
           }
           System.out.println(inputList);
 
+	  String input2 = req.queryParams("input2");
+         // int input2AsInt = Integer.parseInt(input2);
+	  java.util.Scanner sc2 = new java.util.Scanner(input2);
+          sc2.useDelimiter("[;\r\n]+");
+          java.util.ArrayList<Integer> inputList2 = new java.util.ArrayList<>();
+          while (sc2.hasNext())
+          {
+            int value = Integer.parseInt(sc2.next().replaceAll("\\s",""));
+            inputList2.add(value);
+          }
 
-          String input2 = req.queryParams("input2").replaceAll("\\s","");
-          int input2AsInt = Integer.parseInt(input2);
-
-          boolean result = App.search(inputList, input2AsInt);
+          boolean result = App.search(inputList, inputList2,inputList.size(),inputList2.size());
 
          Map map = new HashMap();
           map.put("result", result);
