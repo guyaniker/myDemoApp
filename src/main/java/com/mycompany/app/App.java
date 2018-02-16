@@ -21,7 +21,7 @@ public class App
 	 else if(arr.size()==0 || a_list.size()==0)
 		return false;
 	 else if(arr.size() !=  a_list.size())
-		return false;
+		return true;
 	 else {
 		 for(int i=0 ; i<arr.size(); i++) {
 			 arr.set(i,arr.get(i)*a);
@@ -72,7 +72,7 @@ public class App
             inputList2.add(value);
           }
 
-          boolean result = App.search(inputList, inputList2,inputList.size(),inputList2.size());
+          boolean result = App.search(inputList, inputList2,3,4);
 
          Map map = new HashMap();
           map.put("result", result);
