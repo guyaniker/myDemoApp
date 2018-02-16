@@ -14,27 +14,32 @@ import spark.template.mustache.MustacheTemplateEngine;
 public class App
 {
     public static boolean search( ArrayList<Integer> arr, ArrayList<Integer> a_list, int a, int b) {
-	 if(a<=0 || b<=0 || arr.size()==0 || a_list.size()==0 || arr.size() !=  a_list.size()) {
-		// System.out.println("NULL ERROR");
+	 if(a<=0 || b<=0)
+  	 {
 		 return false;
 	 }
-	 for(int i=0 ; i<arr.size(); i++) {
-		 arr.set(i,arr.get(i)*a);
-		 
-	 }
-	 for(int i=0 ; i<a_list.size(); i++) {
-		 int v =a_list.get(i)*b;
-		 a_list.set(i, v);
-		 
-	 }
-	 for(int i=0,j=0 ; i<arr.size(); i++, j++) {
+	 else if(arr.size()==0 || a_list.size()==0)
+		return false;
+	 else if(arr.size() !=  a_list.size())
+		return false;
+	 else {
+		 for(int i=0 ; i<arr.size(); i++) {
+			 arr.set(i,arr.get(i)*a);
+			 
+		 }
+		 for(int i=0 ; i<a_list.size(); i++) {
+			 int v =a_list.get(i)*b;
+			 a_list.set(i, v);
+			 
+		 }
+		 for(int i=0,j=0 ; i<arr.size(); i++, j++) {
 
-		 int x=arr.get(i)+a_list.get(j); 
-		 arr.set(i,x);
-		 
-	 }
-
-return true;
+			 int x=arr.get(i)+a_list.get(j); 
+			 arr.set(i,x);
+			 
+		 }
+		return true;
+	}
  }
     public static void main(String[] args) {
         port(getHerokuAssignedPort());
